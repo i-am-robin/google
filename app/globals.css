@@ -22,3 +22,9 @@ select {
 svg {
   @apply max-w-full;
 }
+
+.terminal-window {
+  background-image: url("/img/wellper.jpg");
+  background-size: cover;
+  background-position: center;
+}
