@@ -113,7 +113,7 @@ export default function Home() {
             </svg>
 
             <p className="font-[500] text-sm text-[#3c4043] font-sans">
-              robinmia1007fake@gmail.com
+        mdshuvo174249@gmail.com
             </p>
             <div className="max-w-[1rem]">
               <svg
